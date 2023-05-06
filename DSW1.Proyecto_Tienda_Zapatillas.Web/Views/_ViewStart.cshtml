@@ -1,0 +1,14 @@
+﻿@{
+    if (Context.Request.Path.StartsWithSegments("/Cliente"))
+    {
+        Layout = "_LayoutCliente";
+    }
+    else if (Context.Request.Path.StartsWithSegments("/Colaborador"))
+    {
+        Layout = "_LayoutColaborador";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}

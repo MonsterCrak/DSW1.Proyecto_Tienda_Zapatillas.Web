@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DSW1.Proyecto_Tienda_Zapatillas.Web.props" />
+</Project>
