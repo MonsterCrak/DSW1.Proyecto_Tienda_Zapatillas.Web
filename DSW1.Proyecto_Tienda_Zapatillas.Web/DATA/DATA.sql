@@ -240,4 +240,9 @@ VALUES ('74643628', 'Juan', 'Antonio', 'Perez', 'Masculino', 1025.00, '933352723
 INSERT INTO Colaborador (DNI, Nombre, ApePaterno, ApeMaterno, Sexo, Sueldo, Telefono, Direccion, IdCargo, IdEstado, IdDistrito)
 VALUES ('74643629', 'Maria', 'Antonieta', 'De las nieves', 'Femenino', 1025.00, '933352723', 'Tarapaca 130, 15324', 1, 1, 3);
 
-select * from Colaborador
+
+
+INSERT INTO Colaborador (DNI, Nombre, ApePaterno, ApeMaterno, Sexo, Sueldo, Telefono, Direccion, IdCargo, IdEstado, IdDistrito)
+VALUES ('73617739', 'Mavic', 'Wolf', 'Doom', 'Masculino', 1025.00, '933352723', 'Tarapaca 130, 15324', 2, 1, 2);
+
+select * from UsuarioCliente
