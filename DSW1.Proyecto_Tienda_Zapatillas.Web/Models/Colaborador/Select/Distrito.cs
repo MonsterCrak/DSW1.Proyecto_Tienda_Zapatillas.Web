@@ -2,5 +2,8 @@
 {
     public class Distrito
     {
+        public int IdProvincia { get; set; }
+        public int IdDistrito { get; set;}
+        public string Descripcion { get; set; } = string.Empty;
     }
 }

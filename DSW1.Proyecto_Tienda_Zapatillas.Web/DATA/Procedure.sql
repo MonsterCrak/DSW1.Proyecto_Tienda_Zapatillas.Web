@@ -141,9 +141,9 @@ select * from UsuarioColaborador
 
 DECLARE @Mensaje VARCHAR(100);
 EXEC sp_RegistrarUsuarioColaborador 
-    @Email = 'maria@gmail.com',
-    @Clave = 'contraseña',
-    @DNI = '74643629',
+    @Email = 'admin@gmail.com',
+    @Clave = '1234',
+    @DNI = '11111111',
     @Mensaje = @Mensaje OUTPUT;
 
 PRINT @Mensaje;
@@ -202,19 +202,25 @@ go
 
 ----------------- [Select] ------------------
 
-CREATE PROCEDURE SelectProvincias
+Alter PROCEDURE SelectProvincias
 AS
 BEGIN
+    DECLARE @IdProvincia int;
+    SELECT @IdProvincia = IdProvincia
+    FROM Provincia
+    WHERE IdProvincia = 1; -- aquí puedes colocar el valor que necesites
+
     SELECT IdProvincia, Descripcion
     FROM Provincia;
 END
 GO
 
+
 CREATE PROCEDURE GetDistritosByProvincia
     @IdProvincia INT
 AS
 BEGIN
-    SELECT IdDistrito, Descripcion
+    SELECT IdDistrito, Descripcion, IdProvincia
     FROM Distrito
     WHERE IdProvincia = @IdProvincia
 END
@@ -227,6 +233,8 @@ BEGIN
     FROM Cargo;
 END
 GO
+
+
 
 CREATE PROCEDURE SelectEstado
 AS

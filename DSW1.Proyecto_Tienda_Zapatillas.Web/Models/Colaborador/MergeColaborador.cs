@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Colaborador
 {
@@ -47,6 +48,11 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Colaborador
 
         [BindNever]
         public string Mensaje { get; set; } = string.Empty;
+
+
+        // Extra
+        [Required(ErrorMessage = "Selecciona una provincia")]
+        public int IdProvincia { get; set; }
     }
 
 }

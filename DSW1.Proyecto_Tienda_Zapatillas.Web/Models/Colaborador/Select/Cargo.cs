@@ -2,5 +2,7 @@
 {
     public class Cargo
     {
+        public int IdCargo { get; set; }
+        public string Descipcion { get; set; } = string.Empty;
     }
 }

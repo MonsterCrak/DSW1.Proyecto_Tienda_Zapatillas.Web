@@ -1,0 +1,142 @@
+﻿@model DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Colaborador.MergeColaborador
+
+@{
+    ViewData["Title"] = "MergeColaborador";
+}
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<h1>MergeColaborador</h1>
+
+<h4>MergeColaborador</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MergeColaborador">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DNI" class="control-label"></label>
+                <input asp-for="DNI" class="form-control" />
+                <span asp-validation-for="DNI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApePaterno" class="control-label"></label>
+                <input asp-for="ApePaterno" class="form-control" />
+                <span asp-validation-for="ApePaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApeMaterno" class="control-label"></label>
+                <input asp-for="ApeMaterno" class="form-control" />
+                <span asp-validation-for="ApeMaterno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sexo" class="control-label"></label>
+                <select asp-for="Sexo" class="form-control">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+                <span asp-validation-for="Sexo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Sueldo" class="control-label"></label>
+                <input asp-for="Sueldo" class="form-control" />
+                <span asp-validation-for="Sueldo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCargo" class="control-label"></label>
+                <input asp-for="IdCargo" class="form-control" />
+                <span asp-validation-for="IdCargo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEstado" class="control-label"></label>
+                <input asp-for="IdEstado" class="form-control" />
+                <span asp-validation-for="IdEstado" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="IdProvincia" class="control-label"></label>
+                <select asp-for="IdProvincia" asp-items="@ViewBag.Provincias" class="form-control" id="provincia"></select>
+                <span asp-validation-for="IdProvincia" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdDistrito" class="control-label"></label>
+                <select asp-for="IdDistrito" asp-items="@ViewBag.Distritos" class="form-control" id="distrito"></select>
+                <span asp-validation-for="IdDistrito" class="text-danger"></span>
+            </div>
+
+            
+            <div class="form-group">
+                <input type="submit" value="Grabar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.Mensaje
+    </div>
+}
+
+
+
+<script>
+    // Obtener los elementos del DOM
+    const provinciaSelect = document.getElementById('provincia');
+    const distritoSelect = document.getElementById('distrito');
+
+    // Añadir evento change al select de provincias
+    provinciaSelect.addEventListener('change', function () {
+        const provinciaId = this.value;
+        if (provinciaId) {
+            // Hacer petición al servidor para obtener los distritos de la provincia
+            fetch(`/api/distritos?provincia=${provinciaId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Limpiar opciones del select de distritos
+                    distritoSelect.innerHTML = '';
+                    // Añadir opciones al select de distritos
+                    data.forEach(distrito => {
+                        const option = document.createElement('option');
+                        option.value = distrito.id;
+                        option.textContent = distrito.nombre;
+                        distritoSelect.appendChild(option);
+                    });
+                });
+        } else {
+            // Limpiar opciones del select de distritos
+            distritoSelect.innerHTML = '';
+            // Añadir opción por defecto
+            const option = document.createElement('option');
+            option.value = '';
+            option.textContent = 'Seleccione una provincia primero';
+            distritoSelect.appendChild(option);
+        }
+    });
+</script>
