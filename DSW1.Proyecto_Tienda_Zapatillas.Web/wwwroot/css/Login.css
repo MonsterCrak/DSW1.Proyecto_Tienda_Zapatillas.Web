@@ -1,0 +1,9 @@
+
+.cajaLogin {
+    backdrop-filter: blur(0.5rem);
+    background-color: #DCE0E2;
+    border: 0.1px solid #A1A5A8;
+    height: 50%;
+}
+
+

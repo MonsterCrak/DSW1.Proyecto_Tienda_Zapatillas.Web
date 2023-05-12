@@ -108,7 +108,7 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
 
         public IActionResult IniciarSesionUsuarioCliente()
         {
-            return View();
+            return View("IniciarSesionUsuarioCliente");
         }
 
         [HttpPost]

@@ -1,5 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    width: 100vw;
+}
+
+body{
+    width: 100vw;
+    margin-bottom: 60%;
 }
 
 @media (min-width: 768px) {
@@ -13,6 +25,3 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}

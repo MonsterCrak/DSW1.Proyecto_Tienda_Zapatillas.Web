@@ -7,7 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NewFolder1\**" />
+    <Compile Remove="NewFolder2\**" />
+    <Content Remove="NewFolder1\**" />
+    <Content Remove="NewFolder2\**" />
+    <EmbeddedResource Remove="NewFolder1\**" />
+    <EmbeddedResource Remove="NewFolder2\**" />
+    <None Remove="NewFolder1\**" />
+    <None Remove="NewFolder2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\Cliente\" />
+    <Folder Include="wwwroot\Img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Img\Icono.png" />
   </ItemGroup>
 
   <ItemGroup>
