@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
 
-<div class=" d-flex ">
+<div class=" d-flex">
 
     
 
@@ -34,61 +34,36 @@
             <div class="d-flex flex-column justify-conten flex-grow-1">
                 <div class="row justify-content-center mb-2 flex-grow-1">
                         <div class="col-md-10">
-                            <form asp-action="IniciarSesionUsuarioCliente">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                                <div class="">
+                        <form asp-action="IniciarSesionUsuarioCliente">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                                        <span class="fw-bold">Email</span>
-
-                                    <div class="input-group mb-3  has-validation border-bottom border-1 border-dark">
-
-                                        <span class="input-group-text mb-0 pb-0 p-1 border-0 bg-transparent"><i class="fa-solid fa-envelope"></i></span>
-
-                                        <div class="form-control border-0 bg-transparent d-flex align-items-center">
-                                            <input asp-for="Email" class=" mb-0 border-0 p-0 bg-transparent w-100 " placeholder="name@example.com" style="outline:none " />
-                                            <label asp-for="Email" hidden></label>
-
-
-                                        </div>
-                                        <div class="invalid-feedback">
-
-                                            <span asp-validation-for="Email" class="text-danger"></span>
-
-                                        </div>
-                                    </div>
-
+                            @if (ViewBag.Mensaje != null)
+                            {
+                                <div class="alert alert-info">
+                                    @ViewBag.Mensaje
                                 </div>
+                            }
 
-                            <div class="">
-
-                                <span class="fw-bold">Contraseña</span>
-
-                                <div class="input-group mb-3  has-validation border-bottom border-1 border-dark">
-
-                                    <span class="input-group-text mb-0 pb-0 p-1 border-0 bg-transparent"><i class="fa-solid fa-lock"></i></span>
-
-                                    <div class="form-control border-0 bg-transparent d-flex align-items-center">
-                                        <input asp-for="Clave" class=" mb-0 border-0 p-0 bg-transparent w-100 " placeholder="Ingrese su Clave" style="outline:none " />
-                                        <label asp-for="Clave" hidden></label>
-
-
-                                    </div>
-                                    <div class="invalid-feedback">
-
-                                        <span asp-validation-for="Clave" class="text-danger"></span>
-
-                                    </div>
-                                </div>
-
+                            <div class="form-floating mb-3">
+                                <input asp-for="Email" class="form-control custom-input @(!string.IsNullOrEmpty(ViewData.ModelState["Email"]?.Errors.FirstOrDefault()?.ErrorMessage) ? "is-invalid" : "")" placeholder="name@example.com">
+                                <label class="form-label fw-bold" for="Email">Email</label>
+                                <span asp-validation-for="Email" class="invalid-feedback">@Html.Raw(ViewData.ModelState["Email"]?.Errors.FirstOrDefault()?.ErrorMessage)</span>
                             </div>
-                            
-                            
-                                <div class="d-flex justify-content-between mb-4">
-                                    <input type="submit" value="Iniciar Sesion" class="btn btn-primary" />
-                                    <a asp-action="RegistroCliente" class="btn btn-primary">Registrarse</a>
-                                </div>
-                            </form>
+
+                            <div class="form-floating mb-3">
+                                <input asp-for="Clave" class="form-control custom-input @(!string.IsNullOrEmpty(ViewData.ModelState["Clave"]?.Errors.FirstOrDefault()?.ErrorMessage) ? "is-invalid" : "")" placeholder="Ingrese su Clave">
+                                <label class="form-label fw-bold" for="Clave">Contraseña</label>
+                                <span asp-validation-for="Clave" class="invalid-feedback">@Html.Raw(ViewData.ModelState["Clave"]?.Errors.FirstOrDefault()?.ErrorMessage)</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-4">
+                                <input type="submit" value="Iniciar Sesion" class="btn btn-primary">
+                                <a asp-action="RegistroCliente" class="btn btn-primary">Registrarse</a>
+                            </div>
+                        </form>
+
+
                         </div>
                     </div>
 
@@ -96,23 +71,30 @@
                     <div class="d-flex justify-content-between flex-grow-1">
 
                             <span>¿Quieres convertirte en colaborador?</span>
-                            <a href="" class="text-primary">Ingrese Aquí</a>
+                            <a asp-action="IniciarSesionUsuarioColaborador" class="text-primary">Ingrese Aquí</a>
 
                         </div>
                     </div>
+
+                @if (ViewBag.Mensaje == null)
+                {
+                    <p>No hay mensajes para mostrar.</p>
+                }
+                else
+                {
+                    <p>El mensaje es: @ViewBag.Mensaje</p>
+                }
+
             </div>
 
                 @section Scripts {
                     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
                 }
 
-                @if (ViewBag.Mensaje != null)
-                {
-                    <div class="alert alert-info">
-                        @ViewBag.Mensaje
-                    </div>
-                }
+                
             </div>
         </div>
 
 </div>
+
+
