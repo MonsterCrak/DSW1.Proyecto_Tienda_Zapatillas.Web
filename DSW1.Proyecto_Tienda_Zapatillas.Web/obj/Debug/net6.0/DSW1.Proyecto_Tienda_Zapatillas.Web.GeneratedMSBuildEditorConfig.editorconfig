@@ -5,76 +5,77 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DSW1.Proyecto_Tienda_Zapatillas.Web
 build_property.RootNamespace = DSW1.Proyecto_Tienda_Zapatillas.Web
-build_property.ProjectDir = D:\Estudio\Cibertec-Ciclo 5\Proyectos\DSW 1 - SERVICIOS WEB\Proyecto V1.1\DSW1.Proyecto_Tienda_Zapatillas.Web\DSW1.Proyecto_Tienda_Zapatillas.Web\
+build_property.ProjectDir = D:\CIBERTEC\Ciclo 5\DSWI\Proyecto zapatillas\Proyecto zapatila v2.0\DSW1.Proyecto_Tienda_Zapatillas.Web\DSW1.Proyecto_Tienda_Zapatillas.Web\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Estudio\Cibertec-Ciclo 5\Proyectos\DSW 1 - SERVICIOS WEB\Proyecto V1.1\DSW1.Proyecto_Tienda_Zapatillas.Web\DSW1.Proyecto_Tienda_Zapatillas.Web
+build_property.MSBuildProjectDirectory = D:\CIBERTEC\Ciclo 5\DSWI\Proyecto zapatillas\Proyecto zapatila v2.0\DSW1.Proyecto_Tienda_Zapatillas.Web\DSW1.Proyecto_Tienda_Zapatillas.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/IniciarSesionUsuarioCliente.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/IniciarSesionUsuarioCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEluaWNpYXJTZXNpb25Vc3VhcmlvQ2xpZW50ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/IniciarSesionUsuarioColaborador.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/IniciarSesionUsuarioColaborador.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEluaWNpYXJTZXNpb25Vc3VhcmlvQ29sYWJvcmFkb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/RegistroCliente.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/RegistroCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFJlZ2lzdHJvQ2xpZW50ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/RegistroColaborador.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Acceso/RegistroColaborador.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFJlZ2lzdHJvQ29sYWJvcmFkb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Cliente/Index.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Cliente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Colaborador/Index.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Colaborador/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sYWJvcmFkb3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Colaborador/MergeColaborador.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Colaborador/MergeColaborador.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29sYWJvcmFkb3JcTWVyZ2VDb2xhYm9yYWRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Home/Index.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Home/Privacy.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/Error.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/_ViewImports.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/_ViewStart.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_Layout.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xf8fotsqbp
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_LayoutCliente.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_LayoutCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDbGllbnRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = b-rjvseslyuq
 
-[D:/Estudio/Cibertec-Ciclo 5/Proyectos/DSW 1 - SERVICIOS WEB/Proyecto V1.1/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_LayoutColaborador.cshtml]
+[D:/CIBERTEC/Ciclo 5/DSWI/Proyecto zapatillas/Proyecto zapatila v2.0/DSW1.Proyecto_Tienda_Zapatillas.Web/DSW1.Proyecto_Tienda_Zapatillas.Web/Views/Shared/_LayoutColaborador.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDb2xhYm9yYWRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-zvq41v9fbw

@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\DSW1.Proyecto_Tienda_Zapatillas.Web.bundle.scp.css"
     },
     {
+      "Id": "D:\\CIBERTEC\\Ciclo 5\\DSWI\\Proyecto zapatillas\\Proyecto zapatila v2.0\\DSW1.Proyecto_Tienda_Zapatillas.Web\\DSW1.Proyecto_Tienda_Zapatillas.Web\\wwwroot\\Img\\Colaborador.png",
+      "PackagePath": "staticwebassets\\Img\\Colaborador.png"
+    },
+    {
+      "Id": "D:\\CIBERTEC\\Ciclo 5\\DSWI\\Proyecto zapatillas\\Proyecto zapatila v2.0\\DSW1.Proyecto_Tienda_Zapatillas.Web\\DSW1.Proyecto_Tienda_Zapatillas.Web\\wwwroot\\Img\\Icono.png",
+      "PackagePath": "staticwebassets\\Img\\Icono.png"
+    },
+    {
+      "Id": "D:\\CIBERTEC\\Ciclo 5\\DSWI\\Proyecto zapatillas\\Proyecto zapatila v2.0\\DSW1.Proyecto_Tienda_Zapatillas.Web\\DSW1.Proyecto_Tienda_Zapatillas.Web\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
+    },
+    {
       "Id": "D:\\CIBERTEC\\Ciclo 5\\DSWI\\Proyecto zapatillas\\Proyecto zapatila v2.0\\DSW1.Proyecto_Tienda_Zapatillas.Web\\DSW1.Proyecto_Tienda_Zapatillas.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

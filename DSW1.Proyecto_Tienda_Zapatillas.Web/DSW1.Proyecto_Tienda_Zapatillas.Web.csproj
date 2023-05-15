@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Cliente\" />
-    <Folder Include="wwwroot\Img\" />
   </ItemGroup>
 
   <ItemGroup>
