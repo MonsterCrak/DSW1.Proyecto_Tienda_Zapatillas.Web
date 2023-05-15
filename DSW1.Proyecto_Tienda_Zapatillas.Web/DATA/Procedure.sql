@@ -49,6 +49,22 @@ select * from UsuarioCliente
 GO
 --------------------------------
 
+DECLARE @Mensaje VARCHAR(100);
+EXEC sp_RegistrarUsuarioCliente 
+    @Nombre = 'Jhoset',
+    @ApePaterno = 'Llacchua',
+	@ApeMaterno = 'Sales',
+    @Email = 'jhosetsales@gmail.com',
+    @Clave = 'password123',
+    @IdTipoUsuario = 1,
+    @Mensaje = @Mensaje OUTPUT;
+
+PRINT @Mensaje;
+
+select * from UsuarioCliente
+GO
+--------------------------------
+
 CREATE PROCEDURE sp_IniciarSesionUsuarioCliente 
     @Email VARCHAR(100),
     @Clave VARCHAR(50),
@@ -75,8 +91,8 @@ DECLARE @Mensaje VARCHAR(100);
 DECLARE @IdUsuario INT;
 
 EXEC sp_IniciarSesionUsuarioCliente 
-     @Email = 'jhosetsales@gmail.com',
-    @Clave = 'password1234',
+     @Email = '',
+    @Clave = '',
     @Mensaje = @Mensaje OUTPUT,
     @IdUsuario = @IdUsuario OUTPUT;
 

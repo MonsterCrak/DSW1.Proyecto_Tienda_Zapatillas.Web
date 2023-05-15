@@ -10,6 +10,25 @@ END
 
 USE BD_TiendaZapatillas
 
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Producto')
+BEGIN
+    CREATE TABLE Producto (
+        IdProducto INT PRIMARY KEY,
+        Nombre VARCHAR(100) NOT NULL,
+        Descripcion VARCHAR(500) NOT NULL,
+        Precio DECIMAL(10,2) NOT NULL,
+        Imagen VARCHAR(500) NOT NULL,
+        Stock INT NOT NULL
+    );
+    PRINT 'La tabla Producto ha sido creada exitosamente';
+END
+ELSE
+BEGIN
+    PRINT 'La tabla Producto ya existe';
+END
+
+
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Provincia')
 BEGIN
     CREATE TABLE Provincia (
@@ -157,6 +176,23 @@ BEGIN
 END
 
 
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Carrito')
+BEGIN
+    CREATE TABLE Carrito (
+        IdCarrito INT PRIMARY KEY,
+        Fecha DATETIME NOT NULL,
+        Estado VARCHAR(20) NOT NULL,
+        IdUsuarioCliente INT NOT NULL,
+        FOREIGN KEY (IdUsuarioCliente) REFERENCES UsuarioCliente(IdUsuarioCliente)
+    );
+    PRINT 'La tabla Carrito ha sido creada exitosamente';
+END
+ELSE
+BEGIN
+    PRINT 'La tabla Carrito ya existe';
+END
+
+
 
 ----------------------------------------------------
 -- Al registrar Debo hacer una consulta a DNI para traer el nombre y apellido
@@ -175,6 +211,25 @@ END
 ELSE
 BEGIN
     PRINT 'La tabla UsuarioColaborador ya existe';
+END
+
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'DetalleCarrito')
+BEGIN
+    CREATE TABLE DetalleCarrito (
+        IdDetalleCarrito INT PRIMARY KEY,
+        Cantidad INT NOT NULL,
+        Precio DECIMAL(10,2) NOT NULL,
+        IdCarrito INT NOT NULL,
+        IdProducto INT NOT NULL,
+        FOREIGN KEY (IdCarrito) REFERENCES Carrito(IdCarrito),
+        FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto)
+    );
+    PRINT 'La tabla DetalleCarrito ha sido creada exitosamente';
+END
+ELSE
+BEGIN
+    PRINT 'La tabla DetalleCarrito ya existe';
 END
 
 
