@@ -49,7 +49,6 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
                     using (SqlCommand cmd = new SqlCommand("sp_RegistrarUsuarioCliente", cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-
                         cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
                         cmd.Parameters.AddWithValue("@ApePaterno", usuario.ApePaterno);
                         cmd.Parameters.AddWithValue("@ApeMaterno", usuario.ApeMaterno);
@@ -60,37 +59,38 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
 
                         cmd.ExecuteNonQuery();
 
-                        var Email = usuario.Email;
-                        var Nombre = usuario.Nombre.ToString();
-                        var ApellidoPat = usuario.ApePaterno.ToString();
-                        var ApellidoMat = usuario.ApeMaterno.ToString();
-
-                        var emailSettings = _configuration.GetSection("EmailSettings").Get<EmailSettings>();
-
-                        var message = new MailMessage();
-                        message.From = new MailAddress(emailSettings.Username);
-                        message.To.Add(new MailAddress(Email));
-                        message.Subject = "¡Bienvenido a TuZapatillaOnline!";
-                        message.Body = $"Estimado/a {Nombre} {ApellidoPat} {ApellidoMat},\r\n\r\nQueremos darte la más cordial bienvenida a TuZapatillaOnline, la tienda en línea donde podrás encontrar una gran variedad de zapatillas para todas las ocasiones.\r\n\r\nNos complace que hayas decidido registrarte en nuestro sitio y confiar en nosotros para adquirir tus zapatillas. Estamos seguros de que encontrarás el modelo perfecto para ti entre nuestra amplia selección de marcas y estilos.\r\n\r\nAdemás, queremos informarte que con tu cuenta en TuZapatillaOnline podrás disfrutar de ventajas exclusivas como acceso a ofertas especiales, seguimiento de tus pedidos en línea y más.\r\n\r\nSi tienes alguna pregunta o necesitas ayuda en cualquier momento, no dudes en ponerte en contacto con nosotros a través de nuestro sitio web o correo electrónico.\r\n\r\n¡Gracias por formar parte de la comunidad de TuZapatillaOnline! Esperamos que tengas una excelente experiencia de compra con nosotros.\r\n\r\nSaludos cordiales,\r\n TuZapatillaOnline";
-
-                        using (var client = new SmtpClient(emailSettings.SmtpServer, emailSettings.SmtpPort))
-                        {
-                            client.UseDefaultCredentials = false;
-                            client.Credentials = new NetworkCredential(emailSettings.Username, emailSettings.Password);
-                            client.EnableSsl = true;
-
-                            client.Send(message);
-                        }
-
-
                         string mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
-
-
-                        ViewBag.Mensaje = mensaje;
 
                         if (mensaje == "El usuario ha sido registrado exitosamente.")
                         {
-                            return View("RegistroCliente");
+                            var Email = usuario.Email;
+                            var Nombre = usuario.Nombre.ToString();
+                            var ApellidoPat = usuario.ApePaterno.ToString();
+                            var ApellidoMat = usuario.ApeMaterno.ToString();
+
+                            var emailSettings = _configuration.GetSection("EmailSettings").Get<EmailSettings>();
+
+                            var message = new MailMessage();
+                            message.From = new MailAddress(emailSettings.Username);
+                            message.To.Add(new MailAddress(Email));
+                            message.Subject = "¡Bienvenido a TuZapatillaOnline!";
+                            message.Body = $"Estimado/a {Nombre} {ApellidoPat} {ApellidoMat},\r\n\r\nQueremos darte la más cordial bienvenida a TuZapatillaOnline, la tienda en línea donde podrás encontrar una gran variedad de zapatillas para todas las ocasiones.\r\n\r\nNos complace que hayas decidido registrarte en nuestro sitio y confiar en nosotros para adquirir tus zapatillas. Estamos seguros de que encontrarás el modelo perfecto para ti entre nuestra amplia selección de marcas y estilos.\r\n\r\nAdemás, queremos informarte que con tu cuenta en TuZapatillaOnline podrás disfrutar de ventajas exclusivas como acceso a ofertas especiales, seguimiento de tus pedidos en línea y más.\r\n\r\nSi tienes alguna pregunta o necesitas ayuda en cualquier momento, no dudes en ponerte en contacto con nosotros a través de nuestro sitio web o correo electrónico.\r\n\r\n¡Gracias por formar parte de la comunidad de TuZapatillaOnline! Esperamos que tengas una excelente experiencia de compra con nosotros.\r\n\r\nSaludos cordiales,\r\n TuZapatillaOnline";
+
+                            using (var client = new SmtpClient(emailSettings.SmtpServer, emailSettings.SmtpPort))
+                            {
+                                client.UseDefaultCredentials = false;
+                                client.Credentials = new NetworkCredential(emailSettings.Username, emailSettings.Password);
+                                client.EnableSsl = true;
+                                client.Send(message);
+                            }
+
+                            ViewBag.Mensaje = mensaje;
+                            ModelState.Clear()
+;                            return View("RegistroCliente");
+                        }
+                        else
+                        {
+                            ViewBag.Mensaje = mensaje;
                         }
                     }
                 }
@@ -101,8 +101,10 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
             }
 
             return View(usuario);
-        }
 
+        }
+        
+        
         //--Fin Registro
 
         //--Login
@@ -188,6 +190,7 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
 
                         if (mensaje == "El usuario ha sido registrado exitosamente.")
                         {
+                            ModelState.Clear();
                             return View("RegistroColaborador");
                         }
                     }

@@ -279,13 +279,11 @@ INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario) VALUES (1, 'Vendedor',2)
 INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario) VALUES (2, 'Administrador',3);
 INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario) VALUES (3, 'Gerente',4);
 
-Select * from Colaborador
-
 
 -- Colaborador
 INSERT INTO Colaborador (DNI, Nombre, ApePaterno, ApeMaterno, Sexo, Sueldo, Telefono, Direccion, IdCargo, IdEstado, IdDistrito)
-VALUES ('11111111', 'Admin', 'Admin', 'Admin', 'Masculino', 1025.00, '999999999', 'Admin dir', 2, 1, 1);
+VALUES ('74643627', 'Jhoset', 'Llacchua', 'Sales', 'Masculino', 1025.00, '933352723', 'Admin dir', 2, 1, 3);
 
 
 
-select * from UsuarioCliente
+select * from Colaborador

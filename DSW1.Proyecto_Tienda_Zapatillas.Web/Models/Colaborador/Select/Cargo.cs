@@ -3,6 +3,6 @@
     public class Cargo
     {
         public int IdCargo { get; set; }
-        public string Descipcion { get; set; } = string.Empty;
+        public string Descripcion { get; set; } = string.Empty;
     }
 }

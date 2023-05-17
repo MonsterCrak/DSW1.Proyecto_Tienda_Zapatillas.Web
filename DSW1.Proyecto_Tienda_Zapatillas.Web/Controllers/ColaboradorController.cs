@@ -25,89 +25,153 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
             return View();
         }
 
-
-        //----------
-        public int SelectProvincias()
+        private List<Provincia> ObtenerProvincias()
         {
             List<Provincia> provincias = new List<Provincia>();
-            int idProvincia = 0;
-            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDB")))
+
+            try
             {
-                using (SqlCommand command = new SqlCommand("SelectProvincias", connection))
+                using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDB")))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlCommand command = new SqlCommand("SELECT IdProvincia, Descripcion FROM Provincia", connection))
                     {
-                        while (reader.Read())
-                        {
-                            Provincia p = new Provincia();
-                            p.IdProvincia = Convert.ToInt32(reader["IdProvincia"]);
-                            p.Descripcion = reader["Descripcion"].ToString();
+                        connection.Open();
 
-                            provincias.Add(p);
-                        }
-
-                        if (provincias.Count > 0)
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            ViewBag.Provincias = new SelectList(provincias, "IdProvincia", "Descripcion");
-                            idProvincia = provincias.First().IdProvincia;
+                            while (reader.Read())
+                            {
+                                Provincia provincia = new Provincia();
+                                provincia.IdProvincia = Convert.ToInt32(reader["IdProvincia"]);
+                                provincia.Descripcion = reader["Descripcion"].ToString();
+                                provincias.Add(provincia);
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                ViewBag.Mensaje = "Error en busqueda de provincias";
+            }
 
-            return idProvincia;
+            return provincias;
         }
 
-        public JsonResult GetDistritosByProvincia(int idProvincia)
+        private List<Cargo> ObtenerCargo()
+        {
+            List<Cargo> cargos = new List<Cargo>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDB")))
+                {
+                    using (SqlCommand command = new SqlCommand("SELECT IdCargo, Descripcion FROM Cargo;", connection))
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Cargo cargo = new Cargo();
+                                cargo.IdCargo = Convert.ToInt32(reader["IdCargo"]);
+                                cargo.Descripcion = reader["Descripcion"].ToString();
+                                cargos.Add(cargo);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Mensaje = "Error en busqueda de cargos";
+            }
+
+            return cargos;
+        }
+
+        private List<Estado> ObtenerEstado()
+        {
+            List<Estado> estados = new List<Estado>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDB")))
+                {
+                    using (SqlCommand command = new SqlCommand("SELECT IdEstado, Descripcion FROM Estado;", connection))
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Estado estado = new Estado();
+                                estado.IdEstado = Convert.ToInt32(reader["IdEstado"]);
+                                estado.Descripcion = reader["Descripcion"].ToString();
+                                estados.Add(estado);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Mensaje = "Error en busqueda de Estados";
+            }
+
+            return estados;
+        }
+
+
+        public IActionResult GetDistritosByProvincia(int idProvincia)
         {
             List<Distrito> distritos = new List<Distrito>();
+
             using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDB")))
             {
                 using (SqlCommand command = new SqlCommand("GetDistritosByProvincia", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@IdProvincia", idProvincia);
+
                     connection.Open();
+
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Distrito d = new Distrito();
-                            d.IdDistrito = Convert.ToInt32(reader["IdDistrito"]);
-                            d.Descripcion = reader["Descripcion"].ToString();
-                            d.IdProvincia = Convert.ToInt32(reader["IdProvincia"]);
-                            distritos.Add(d);
+                            Distrito distrito = new Distrito();
+                            distrito.IdDistrito = Convert.ToInt32(reader["IdDistrito"]);
+                            distrito.Descripcion = reader["Descripcion"].ToString();
+                            distritos.Add(distrito);
                         }
                     }
                 }
             }
+
             return Json(distritos);
         }
 
 
+
         public IActionResult MergeColaborador()
         {
-            int idProvincia = SelectProvincias(); // Obtener el id de provincia
-            
+            var colaborador = new MergeColaborador();
+            colaborador.Provincias = ObtenerProvincias(); // Inicializa la propiedad Provincias con una lista de provincias
+            colaborador.Cargos = ObtenerCargo();
+            colaborador.Estados = ObtenerEstado();
 
-            var provincias = ViewBag.Provincias;
 
-            
-
-            return View();
+            return View(colaborador);
         }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult MergeColaborador(MergeColaborador colaborador)
         {
             string mensaje = string.Empty;
-            
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("cnDB")))
@@ -145,16 +209,13 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
             }
 
             ViewBag.Mensaje = mensaje;
-
-            int idProvincia = SelectProvincias(); // Obtener el id de provincia
-
-
-            var provincias = ViewBag.Provincias;
-
+            colaborador.Provincias = ObtenerProvincias();
+            colaborador.Cargos = ObtenerCargo();
+            colaborador.Estados = ObtenerEstado();
+            ModelState.Clear();
 
             return View(colaborador);
         }
-
 
 
 

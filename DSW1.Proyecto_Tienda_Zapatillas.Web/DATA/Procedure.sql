@@ -49,22 +49,6 @@ select * from UsuarioCliente
 GO
 --------------------------------
 
-DECLARE @Mensaje VARCHAR(100);
-EXEC sp_RegistrarUsuarioCliente 
-    @Nombre = 'Jhoset',
-    @ApePaterno = 'Llacchua',
-	@ApeMaterno = 'Sales',
-    @Email = 'jhosetsales@gmail.com',
-    @Clave = 'password123',
-    @IdTipoUsuario = 1,
-    @Mensaje = @Mensaje OUTPUT;
-
-PRINT @Mensaje;
-
-select * from UsuarioCliente
-GO
---------------------------------
-
 CREATE PROCEDURE sp_IniciarSesionUsuarioCliente 
     @Email VARCHAR(100),
     @Clave VARCHAR(50),
@@ -153,13 +137,11 @@ END
 GO
 
 
-select * from UsuarioColaborador
-
 DECLARE @Mensaje VARCHAR(100);
 EXEC sp_RegistrarUsuarioColaborador 
-    @Email = 'admin@gmail.com',
-    @Clave = '1234',
-    @DNI = '11111111',
+    @Email = 'jhosetsales@gmail.com',
+    @Clave = 'password123',
+    @DNI = '74643627',
     @Mensaje = @Mensaje OUTPUT;
 
 PRINT @Mensaje;
@@ -204,8 +186,8 @@ END
 GO
 
 
-DECLARE @Email VARCHAR(100) = 'maria@gmail.com'
-DECLARE @Clave VARCHAR(50) = 'contraseña'
+DECLARE @Email VARCHAR(100) = 'jhosetsales@gmail.com'
+DECLARE @Clave VARCHAR(50) = 'password123'
 DECLARE @Mensaje VARCHAR(100)
 
 EXEC sp_IniciarSesionUsuarioColaborador @Email, @Clave, @Mensaje OUTPUT
@@ -218,46 +200,16 @@ go
 
 ----------------- [Select] ------------------
 
-Alter PROCEDURE SelectProvincias
-AS
-BEGIN
-    DECLARE @IdProvincia int;
-    SELECT @IdProvincia = IdProvincia
-    FROM Provincia
-    WHERE IdProvincia = 1; -- aquí puedes colocar el valor que necesites
-
-    SELECT IdProvincia, Descripcion
-    FROM Provincia;
-END
-GO
 
 
 CREATE PROCEDURE GetDistritosByProvincia
     @IdProvincia INT
 AS
 BEGIN
-    SELECT IdDistrito, Descripcion, IdProvincia
-    FROM Distrito
-    WHERE IdProvincia = @IdProvincia
+    SELECT * FROM Distrito WHERE IdProvincia = @IdProvincia
 END
 GO
 
-CREATE PROCEDURE SelectCargos
-AS
-BEGIN
-    SELECT IdCargo, Descripcion
-    FROM Cargo;
-END
-GO
-
-
-
-CREATE PROCEDURE SelectEstado
-AS
-BEGIN
-    SELECT IdEstado, Descripcion FROM Estado;
-END
-GO
 
 ----------------- [MANTENIMIENTOS] ------------------
 
@@ -359,5 +311,6 @@ SELECT @Mensaje;
 
 
 
-select * from Colaborador
+select * from UsuarioCliente
+
 

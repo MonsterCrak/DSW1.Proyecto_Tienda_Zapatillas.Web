@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Colaborador.Select;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Colaborador
 {
     public class MergeColaborador
     {
-        [Required]
+        [Required(ErrorMessage = "El DNI es obligatorio.")]
         [RegularExpression(@"^\d{8}$", ErrorMessage = "El DNI debe tener 8 dígitos.")]
         public string DNI { get; set; }
 
@@ -37,13 +38,13 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Colaborador
         [StringLength(100, ErrorMessage = "La dirección no puede tener más de 100 caracteres.")]
         public string Direccion { get; set; }
 
-        [Required(ErrorMessage = "El ID del cargo es obligatorio.")]
+        [Required(ErrorMessage = "Seleccione un Cargo")]
         public string IdCargo { get; set; }
 
-        [Required(ErrorMessage = "El ID del estado es obligatorio.")]
+        [Required(ErrorMessage = "Seleccione un estado")]
         public string IdEstado { get; set; }
 
-        [Required(ErrorMessage = "El ID del distrito es obligatorio.")]
+        [Required(ErrorMessage = "Seleccione un distrito")]
         public string IdDistrito { get; set; }
 
         [BindNever]
@@ -51,8 +52,18 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Colaborador
 
 
         // Extra
+
         [Required(ErrorMessage = "Selecciona una provincia")]
         public int IdProvincia { get; set; }
+
+        [Required(ErrorMessage = "Selecciona una provincia")]
+        public List<Provincia> Provincias { get; set; }
+
+        [Required(ErrorMessage = "Selecciona una provincia")]
+        public List<Cargo> Cargos { get; set; }
+
+        [Required(ErrorMessage = "Selecciona una provincia")]
+        public List<Estado> Estados { get; set; }
     }
 
 }
