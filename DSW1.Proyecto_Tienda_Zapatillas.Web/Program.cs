@@ -12,11 +12,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Acceso/IniciarSesionUsuarioColaborador";
         options.LogoutPath = "/Acceso/CerrarSesionColaborador";
-
     });
 
-
-//
+// Agregado de sesión
+builder.Services.AddDistributedMemoryCache(); // Requerido para almacenar la sesión en memoria
+builder.Services.AddSession(options =>
+{
+    // Configura las opciones de la sesión según tus necesidades
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -33,22 +39,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-
-
 // Agregados
-
 app.UseAuthentication();
-
-
-//
-
 app.UseAuthorization();
+
+// Agregado de sesión
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Acceso}/{action=IniciarSesionUsuarioCliente}/{id?}");
-
-
-
 
 app.Run();

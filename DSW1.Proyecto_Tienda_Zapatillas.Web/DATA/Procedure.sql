@@ -1,6 +1,11 @@
 USE BD_TiendaZapatillas
 GO
 
+
+IF OBJECT_ID('sp_RegistrarUsuarioCliente', 'P') IS NOT NULL
+    DROP PROCEDURE sp_RegistrarUsuarioCliente;
+GO
+
 CREATE PROCEDURE sp_RegistrarUsuarioCliente 
     @Nombre VARCHAR(50),
     @ApePaterno VARCHAR(50),
@@ -8,6 +13,7 @@ CREATE PROCEDURE sp_RegistrarUsuarioCliente
     @Email VARCHAR(100),
     @Clave VARCHAR(50),
     @IdTipoUsuario INT = 1,
+	@IdUsuarioCliente INT OUTPUT,
     @Mensaje VARCHAR(100) OUTPUT
 AS
 BEGIN
@@ -26,30 +32,22 @@ BEGIN
     
     INSERT INTO UsuarioCliente (IdUsuarioCliente, Nombre, ApePaterno, ApeMaterno, Email, Clave, IdTipoUsuario)
     VALUES (@Id, @Nombre, @ApePaterno, @ApeMaterno, @Email, @ClaveHash, @IdTipoUsuario);
+
+
+	INSERT INTO Cliente (IdCliente, Sexo, Telefono, Direccion, IdUsuarioCliente, IdDistrito)
+	VALUES (@Id, null, null, null, @Id, null);
+
+
     
     SET @Mensaje = 'El usuario ha sido registrado exitosamente.';
 END
 GO
 
 
-----------------------------------
-DECLARE @Mensaje VARCHAR(100);
-EXEC sp_RegistrarUsuarioCliente 
-    @Nombre = 'Jhoset',
-    @ApePaterno = 'Llacchua',
-	@ApeMaterno = 'Sales',
-    @Email = 'jhosetsales@gmail.com',
-    @Clave = 'password123',
-    @IdTipoUsuario = 1,
-    @Mensaje = @Mensaje OUTPUT;
 
-PRINT @Mensaje;
-
-select * from UsuarioCliente
-GO
 --------------------------------
 
-CREATE PROCEDURE sp_IniciarSesionUsuarioCliente 
+CREATE OR ALTER PROCEDURE sp_IniciarSesionUsuarioCliente 
     @Email VARCHAR(100),
     @Clave VARCHAR(50),
     @Mensaje VARCHAR(100) OUTPUT,
@@ -71,18 +69,11 @@ BEGIN
 END
 GO
 
-DECLARE @Mensaje VARCHAR(100);
-DECLARE @IdUsuario INT;
+-----------------------------
 
-EXEC sp_IniciarSesionUsuarioCliente 
-     @Email = '',
-    @Clave = '',
-    @Mensaje = @Mensaje OUTPUT,
-    @IdUsuario = @IdUsuario OUTPUT;
-
-SELECT @Mensaje AS Mensaje, @IdUsuario AS Id
+IF OBJECT_ID('sp_RegistrarUsuarioColaborador', 'P') IS NOT NULL
+    DROP PROCEDURE sp_RegistrarUsuarioColaborador;
 GO
-
 
 CREATE PROCEDURE sp_RegistrarUsuarioColaborador
     @Email VARCHAR(100),
@@ -137,19 +128,10 @@ END
 GO
 
 
-DECLARE @Mensaje VARCHAR(100);
-EXEC sp_RegistrarUsuarioColaborador 
-    @Email = 'jhosetsales@gmail.com',
-    @Clave = 'password123',
-    @DNI = '74643627',
-    @Mensaje = @Mensaje OUTPUT;
-
-PRINT @Mensaje;
-GO
---------------------
+---------------------------------
 
 
-CREATE PROCEDURE sp_IniciarSesionUsuarioColaborador
+CREATE OR ALTER PROCEDURE sp_IniciarSesionUsuarioColaborador
     @Email VARCHAR(100),
     @Clave VARCHAR(50),
     @Mensaje VARCHAR(100) OUTPUT
@@ -185,24 +167,10 @@ BEGIN
 END
 GO
 
-
-DECLARE @Email VARCHAR(100) = 'jhosetsales@gmail.com'
-DECLARE @Clave VARCHAR(50) = 'password123'
-DECLARE @Mensaje VARCHAR(100)
-
-EXEC sp_IniciarSesionUsuarioColaborador @Email, @Clave, @Mensaje OUTPUT
-
-SELECT @Mensaje AS Mensaje
-
-
-select * from UsuarioColaborador
-go
-
 ----------------- [Select] ------------------
 
 
-
-CREATE PROCEDURE GetDistritosByProvincia
+CREATE OR ALTER PROCEDURE GetDistritosByProvincia
     @IdProvincia INT
 AS
 BEGIN
@@ -290,27 +258,53 @@ BEGIN
 END
 GO
 
+------- [Usuario Principal] --------
+
 
 DECLARE @Mensaje VARCHAR(100);
-
-EXEC sp_mergeColaborador
-    @DNI = '74643631',
-    @Nombre = 'Mario',
-    @ApePaterno = 'Llacchua',
-    @ApeMaterno = 'Sales',
-    @Sexo = 'Masculino',
-    @Sueldo = 2500.00,
-    @Telefono = '933352723',
-    @Direccion = 'Tarapaca 130, 15324',
-    @IdCargo = 2,
-    @IdEstado = 1,
-    @IdDistrito = 1,
+EXEC sp_RegistrarUsuarioColaborador 
+    @Email = 'jhosetsales@gmail.com',
+    @Clave = 'password123',
+    @DNI = '74643627',
     @Mensaje = @Mensaje OUTPUT;
 
-SELECT @Mensaje;
+PRINT @Mensaje;
+GO
 
+
+----------------------------------------
+----------------- Test -----------------
+----------------------------------------
+
+DECLARE @Mensaje VARCHAR(100);
+DECLARE @IdUsuarioCliente INT;
+
+EXEC sp_RegistrarUsuarioCliente 
+    @Nombre = 'Jhoset',
+    @ApePaterno = 'Llacchua',
+    @ApeMaterno = 'Sales',
+    @Email = 'jhosetsales@gmail.com',
+    @Clave = 'password123',
+    @IdUsuarioCliente = @IdUsuarioCliente OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+
+PRINT @Mensaje;
 
 
 select * from UsuarioCliente
+select * from Cliente
+GO
+
+
+
+DECLARE @Email VARCHAR(100) = 'jhosetsales@gmail.com'
+DECLARE @Clave VARCHAR(50) = 'password123'
+DECLARE @Mensaje VARCHAR(100)
+
+EXEC sp_IniciarSesionUsuarioColaborador @Email, @Clave, @Mensaje OUTPUT
+
+SELECT @Mensaje AS Mensaje
+
+
 
 

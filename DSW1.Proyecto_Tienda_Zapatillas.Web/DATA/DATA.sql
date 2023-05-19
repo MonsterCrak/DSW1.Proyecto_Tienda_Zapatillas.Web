@@ -1,32 +1,32 @@
+-- Verificar si la base de datos ya existe
 IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'BD_TiendaZapatillas')
 BEGIN
-  CREATE DATABASE BD_TiendaZapatillas
-  PRINT 'La base de datos BD_TiendaZapatillas ha sido creada exitosamente'
+    -- Crear la base de datos
+    CREATE DATABASE BD_TiendaZapatillas;
+    PRINT 'La base de datos BD_TiendaZapatillas ha sido creada exitosamente';
 END
 ELSE
 BEGIN
-  PRINT 'La base de datos BD_TiendaZapatillas ya existe'
+    PRINT 'La base de datos BD_TiendaZapatillas ya existe';
 END
+GO
 
 USE BD_TiendaZapatillas
+GO
 
-
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Producto')
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Categoria')
 BEGIN
-    CREATE TABLE Producto (
-        IdProducto INT PRIMARY KEY,
-        Nombre VARCHAR(100) NOT NULL,
-        Descripcion VARCHAR(500) NOT NULL,
-        Precio DECIMAL(10,2) NOT NULL,
-        Imagen VARCHAR(500) NOT NULL,
-        Stock INT NOT NULL
+    CREATE TABLE Categoria (
+        IdCategoria INT PRIMARY KEY,
+        Descripcion VARCHAR(100) NOT NULL
     );
-    PRINT 'La tabla Producto ha sido creada exitosamente';
+    PRINT 'La tabla Categoria ha sido creada exitosamente';
 END
 ELSE
 BEGIN
-    PRINT 'La tabla Producto ya existe';
+    PRINT 'La tabla Categoria ya existe';
 END
+
 
 
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Provincia')
@@ -74,6 +74,27 @@ GO
 
 
 --------------------------------
+
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Producto')
+BEGIN
+    CREATE TABLE Producto (
+        IdProducto INT PRIMARY KEY,
+        Nombre VARCHAR(100) NOT NULL,
+        Descripcion VARCHAR(500) NOT NULL,
+        Precio DECIMAL(10,2) NOT NULL,
+        Imagen VARCHAR(500) NOT NULL,
+        Stock INT NOT NULL,
+        IdCategoria INT,
+        FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria)
+    );
+    PRINT 'La tabla Producto ha sido creada exitosamente';
+END
+ELSE
+BEGIN
+    PRINT 'La tabla Producto ya existe';
+END
+
 
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Distrito')
 BEGIN
@@ -160,11 +181,11 @@ IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Client
 BEGIN
     CREATE TABLE Cliente (
         IdCliente INT PRIMARY KEY,
-        Sexo CHAR(1) NOT NULL,
-        Telefono VARCHAR(20) NOT NULL,
-        Direccion VARCHAR(100) NOT NULL,
+        Sexo VARCHAR(10),
+        Telefono VARCHAR(20),
+        Direccion VARCHAR(100),
         IdUsuarioCliente INT NOT NULL,
-        IdDistrito INT NOT NULL,
+        IdDistrito INT,
         FOREIGN KEY (IdUsuarioCliente) REFERENCES UsuarioCliente(IdUsuarioCliente),
         FOREIGN KEY (IdDistrito) REFERENCES Distrito(IdDistrito)
     );
@@ -174,6 +195,7 @@ ELSE
 BEGIN
     PRINT 'La tabla Cliente ya existe';
 END
+
 
 
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Carrito')
@@ -238,14 +260,38 @@ END
 
 
 
-INSERT INTO TipoUsuario (IdTipoUsuario, descripcion) VALUES (1, 'Cliente');
-INSERT INTO TipoUsuario (IdTipoUsuario, descripcion) VALUES (2, 'Vendedor');
-INSERT INTO TipoUsuario (IdTipoUsuario, descripcion) VALUES (3, 'Administrador');
-INSERT INTO TipoUsuario (IdTipoUsuario, descripcion) VALUES (4, 'Gerente');
+-- Insertar registros en TipoUsuario si no existen
+INSERT INTO TipoUsuario (IdTipoUsuario, descripcion)
+SELECT 1, 'Cliente'
+WHERE NOT EXISTS (SELECT 1 FROM TipoUsuario WHERE IdTipoUsuario = 1);
 
-INSERT INTO Estado (IdEstado, Descripcion) VALUES
-(1, 'Activa'),
-(2, 'Inactiva');
+INSERT INTO TipoUsuario (IdTipoUsuario, descripcion)
+SELECT 2, 'Vendedor'
+WHERE NOT EXISTS (SELECT 1 FROM TipoUsuario WHERE IdTipoUsuario = 2);
+
+INSERT INTO TipoUsuario (IdTipoUsuario, descripcion)
+SELECT 3, 'Administrador'
+WHERE NOT EXISTS (SELECT 1 FROM TipoUsuario WHERE IdTipoUsuario = 3);
+
+INSERT INTO TipoUsuario (IdTipoUsuario, descripcion)
+SELECT 4, 'Gerente'
+WHERE NOT EXISTS (SELECT 1 FROM TipoUsuario WHERE IdTipoUsuario = 4);
+
+
+-----------------------
+
+-- Insertar registros en Estado si no existen
+INSERT INTO Estado (IdEstado, Descripcion)
+SELECT 1, 'Activa'
+WHERE NOT EXISTS (SELECT 1 FROM Estado WHERE IdEstado = 1);
+
+INSERT INTO Estado (IdEstado, Descripcion)
+SELECT 2, 'Inactiva'
+WHERE NOT EXISTS (SELECT 1 FROM Estado WHERE IdEstado = 2);
+
+--------
+
+
 
 INSERT INTO Provincia (IdProvincia, Descripcion) VALUES
 (1, 'Lima'),
@@ -274,10 +320,21 @@ INSERT INTO Distrito (IdDistrito, Descripcion, IdProvincia) VALUES
 (19, 'Wanchaq', 3),
 (20, 'San Jerónimo', 3);
 
+-----------------
 
-INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario) VALUES (1, 'Vendedor',2);
-INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario) VALUES (2, 'Administrador',3);
-INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario) VALUES (3, 'Gerente',4);
+-- Insertar registros en Cargo si no existen
+INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario)
+SELECT 1, 'Vendedor', 2
+WHERE NOT EXISTS (SELECT 1 FROM Cargo WHERE IdCargo = 1);
+
+INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario)
+SELECT 2, 'Administrador', 3
+WHERE NOT EXISTS (SELECT 1 FROM Cargo WHERE IdCargo = 2);
+
+INSERT INTO Cargo (IdCargo, Descripcion, IdTipoUsuario)
+SELECT 3, 'Gerente', 4
+WHERE NOT EXISTS (SELECT 1 FROM Cargo WHERE IdCargo = 3);
+
 
 
 -- Colaborador
@@ -286,4 +343,4 @@ VALUES ('74643627', 'Jhoset', 'Llacchua', 'Sales', 'Masculino', 1025.00, '933352
 
 
 
-select * from Colaborador
+PRINT 'BD_TiendaZapatillas ejecutada correctamente';

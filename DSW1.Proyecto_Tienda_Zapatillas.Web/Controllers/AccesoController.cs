@@ -9,6 +9,10 @@ using System.Diagnostics.Contracts;
 using System.Net.Mail;
 using System.Net;
 using EncargoProyecto.Models;
+using DSW1.Proyecto_Tienda_Zapatillas.Web.Models.Cliente;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json;
+
 
 namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
 {
@@ -56,6 +60,8 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
                         cmd.Parameters.AddWithValue("@Clave", usuario.Clave);
                         cmd.Parameters.AddWithValue("@IdTipoUsuario", 1);
                         cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add("@IdUsuarioCliente", SqlDbType.Int).Direction = ParameterDirection.Output;
+
 
                         cmd.ExecuteNonQuery();
 
@@ -85,8 +91,8 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
                             }
 
                             ViewBag.Mensaje = mensaje;
-                            ModelState.Clear()
-;                            return View("RegistroCliente");
+                            ModelState.Clear();                           
+                            return View("RegistroCliente");
                         }
                         else
                         {
@@ -97,14 +103,14 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Mensaje = "Ocurrió un error al intentar registrar al usuario. Por favor, inténtelo nuevamente.";
+                ViewBag.Mensaje = "Ocurrió un error al intentar registrar al usuario. Por favor, inténtelo nuevamente."+ex.Message;
             }
 
             return View(usuario);
 
         }
-        
-        
+
+
         //--Fin Registro
 
         //--Login
@@ -144,11 +150,25 @@ namespace DSW1.Proyecto_Tienda_Zapatillas.Web.Controllers
 
             if (idUsuario.HasValue)
             {
+                Cliente cliente = new Cliente();
+                {
+                    cliente.IdCliente = idUsuario.Value;
+                    cliente.IdUsuarioCliente = idUsuario.Value;
+                };
+
+                // Serializar el objeto cliente a JSON
+                string clienteJson = JsonSerializer.Serialize(cliente);
+
+                // Guardar los datos del usuario en la sesión
+                HttpContext.Session.SetString("cliente", clienteJson);
+
+
                 return RedirectToAction("Index", "Cliente");
             }
 
             return View(usuario);
         }
+
 
         //--Fin Login
 
